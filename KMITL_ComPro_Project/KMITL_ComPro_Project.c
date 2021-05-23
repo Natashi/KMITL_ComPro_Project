@@ -59,14 +59,17 @@ int main() {
 					else if (strcmp(cmd, "listp") == 0) {
 						LocationMap_GetListProvince(locationMap, &tmpList);
 
-						printf("\n%u provinces available\n", DynamicList_GetSize(&tmpList));
+						size_t count = DynamicList_GetSize(&tmpList);
+						printf("\n%u provinces available\n", count);
 
-						printf("----%s %-20s\n", " # ", "Province");
-						size_t i = 0;
-						for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
-							Location* pLoc = (Location*)(iNode->data);
-							printf("   -%2u. %-20s\n", i + 1, pLoc->province);
-							if (iNode->next == NULL) break;
+						if (count > 0) {
+							printf("----%s %-20s\n", " # ", "Province");
+							size_t i = 0;
+							for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
+								Location* pLoc = (Location*)(iNode->data);
+								printf("   -%2u. %-20s\n", i + 1, pLoc->province);
+								if (iNode->next == NULL) break;
+							}
 						}
 
 						DynamicList_FreeAll(&tmpList);
@@ -75,14 +78,17 @@ int main() {
 					else if (strcmp(cmd, "listt") == 0) {
 						LocationMap_GetListType(locationMap, &tmpList);
 
-						printf("\n%u types available\n", DynamicList_GetSize(&tmpList));
+						size_t count = DynamicList_GetSize(&tmpList);
+						printf("\n%u types available\n", count);
 
-						printf("----%s %-20s\n", " # ", "Type");
-						size_t i = 0;
-						for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
-							Location* pLoc = (Location*)(iNode->data);
-							printf("   -%2u. %-20s\n", i + 1, pLoc->type);
-							if (iNode->next == NULL) break;
+						if (count > 0) {
+							printf("----%s %-20s\n", " # ", "Type");
+							size_t i = 0;
+							for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
+								Location* pLoc = (Location*)(iNode->data);
+								printf("   -%2u. %-20s\n", i + 1, pLoc->type);
+								if (iNode->next == NULL) break;
+							}
 						}
 
 						DynamicList_FreeAll(&tmpList);
@@ -93,15 +99,18 @@ int main() {
 
 						LocationMap_SearchByProvince(locationMap, arg, &tmpList);
 
-						printf("\nSearch-by-province result: %u locations\n", DynamicList_GetSize(&tmpList));
+						size_t count = DynamicList_GetSize(&tmpList);
+						printf("\nSearch-by-province result: %u locations\n", count);
 
-						printf("----%s %-20s  %-18s    %s\n", " # ", "Province", "Type", "Name");
-						size_t i = 0;
-						for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
-							Location* pLoc = (Location*)(iNode->data);
-							printf("   -%2u. %-20s; %-18s -> %s\n", i + 1, pLoc->province,
-								pLoc->type, pLoc->name);
-							if (iNode->next == NULL) break;
+						if (count > 0) {
+							printf("----%s %-20s  %-18s    %s\n", " # ", "Province", "Type", "Name");
+							size_t i = 0;
+							for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
+								Location* pLoc = (Location*)(iNode->data);
+								printf("   -%2u. %-20s; %-18s -> %s\n", i + 1, pLoc->province,
+									pLoc->type, pLoc->name);
+								if (iNode->next == NULL) break;
+							}
 						}
 
 						DynamicList_FreeAll(&tmpList);
@@ -112,15 +121,18 @@ int main() {
 
 						LocationMap_SearchByType(locationMap, arg, &tmpList);
 
-						printf("\nSearch-by-type result: %u locations\n", DynamicList_GetSize(&tmpList));
+						size_t count = DynamicList_GetSize(&tmpList);
+						printf("\nSearch-by-type result: %u locations\n", count);
 
-						printf("----%s %-20s  %-18s    %s\n", " # ", "Province", "Type", "Name");
-						size_t i = 0;
-						for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
-							Location* pLoc = (Location*)(iNode->data);
-							printf("   -%2u. %-20s; %-18s -> %s\n", i + 1, pLoc->province,
-								pLoc->type, pLoc->name);
-							if (iNode->next == NULL) break;
+						if (count > 0) {
+							printf("----%s %-20s  %-18s    %s\n", " # ", "Province", "Type", "Name");
+							size_t i = 0;
+							for (DynamicListNode* iNode = tmpList.head;; iNode = iNode->next, ++i) {
+								Location* pLoc = (Location*)(iNode->data);
+								printf("   -%2u. %-20s; %-18s -> %s\n", i + 1, pLoc->province,
+									pLoc->type, pLoc->name);
+								if (iNode->next == NULL) break;
+							}
 						}
 
 						DynamicList_FreeAll(&tmpList);
