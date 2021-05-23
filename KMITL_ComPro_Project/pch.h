@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 
 #define PTR_NEW(x) malloc(sizeof(x))
 #define PTR_DELETE(x) if (x) free(x);

@@ -1,50 +1,50 @@
-Chiang Mai, Cultural, Wat Phra That Doi Suthep
-Chiang Mai, Historical, Wat Chedi Luang
+Chiang Mai, Cultural Site, Wat Phra
+Chiang Mai, Historical Site, Wat Chedi Luang
 Chiang Mai, Mountain, Doi Ang Khang
-Chiang Mai, Cultural, Tha Pae Sunday Walking Street
-Chiang Mai, Cultural, Bhubing Palace
+Chiang Mai, Cultural Site, Tha Pae Sunday Walking Street
+Chiang Mai, Cultural Site, Bhubing Palace
 Chiang Rai, Mountain, Phu Chi Fa
 Chiang Rai, Mountain, Doi Pha Tang
-Chiang Rai, Cultural, Wat Rong Khun
-Chiang Rai, Historical, Baan Dan Museum
+Chiang Rai, Cultural Site, Wat Rong Khun
+Chiang Rai, Historical Site, Baan Dan Museum
 Chiang Rai, Cafe, Stardoi Coffee
-Sukhothai, Historical, Sukhothai Historical Park
-Sukhothai, Historical, Sawankhaworanayok National Museum
-Sukhothai, Neutral, Ramkhamhaeng National Park
+Sukhothai, Historical Site, Sukhothai Historical Park
+Sukhothai, Historical Site, Sawankhaworanayok National Museum
+Sukhothai, Other, Ramkhamhaeng National Park
 Sukhothai, Waterfall, Rainbow Waterfall
-Sukhothai, Cultural, Wat Traphang Thong Market
-Suphan Buri, Cultural, Naherechai
+Sukhothai, Cultural Site, Wat Traphang Thong Market
+Suphan Buri, Cultural Site, Naherechai
 Suphan Buri, Cafe, Baan Rim Na Cafe
-Suphan Buri, Cultural, Bang Li Market
-Suphan Buri, Cultural, Dragon Paradise Park Suphanburi
-Suphan Buri, Cafe, The Mill’s café
+Suphan Buri, Cultural Site, Bang Li Market
+Suphan Buri, Cultural Site, Dragon Paradise Park Suphanburi
+Suphan Buri, Cafe, The Mill's Cafe
 Ubon Ratchathani, Canyon, Sam Phan Bok
 Ubon Ratchathani, Waterfall, Sang Chan Waterfall
 Ubon Ratchathani, Canyon, Hat Chom Dao
-Ubon Ratchathani, Cultural, Thung Sri Muang Night Market
+Ubon Ratchathani, Cultural Site, Thung Sri Muang Night Market
 Ubon Ratchathani, Beach, Had Hong Sand Dunes
 Uthai Thani, Cafe, Baan Ria Pai Na
-Uthai Thani, Neutral, Baan Chai Khao Viewpoint
-Uthai Thani, Cultural, Khao Sakae Krang
-Uthai Thani, Neutral, Hup Pa Tat
-Uthai Thani, Neutral, Pang Sawan Dam
+Uthai Thani, Other, Baan Chai Khao Viewpoint
+Uthai Thani, Cultural Site, Khao Sakae Krang
+Uthai Thani, Other, Hup Pa Tat
+Uthai Thani, Other, Pang Sawan Dam
 Trat, Beach, Black Sand Beach
 Trat, Island, Ko Kut
 Trat, Island, Ko Rang
 Trat, Island, Mu Ko Rayang
-Trat, Cultural, Baan Nam Chiew
-Prachin Buri, Cultural, Wat Kaeo Phichit
-Prachin Buri, Neutral, Dasada
-Prachin Buri, Historical, Home story Prachin Buri
-Prachin Buri, Neutral, Khao Ito Reservoir
-Prachin Buri, Neutral, Saksupha Resort
+Trat, Cultural Site, Baan Nam Chiew
+Prachin Buri, Cultural Site, Wat Kaeo Phichit
+Prachin Buri, Other, Dasada
+Prachin Buri, Historical Site, Home story Prachin Buri
+Prachin Buri, Other, Khao Ito Reservoir
+Prachin Buri, Other, Saksupha Resort
 Trang, Island, Ko Libong
 Trang, Beach, Pak Meng Beach
-Trang, Cultural, Trang Church
+Trang, Cultural Site, Trang Church
 Trang, Cave, Tham Le Khao Kob
-Trang, Neutral, Khao Jom Pha
+Trang, Other, Khao Jom Pha
 Surat Thani, Island, Mu Koh Angthong National Marine Park
 Surat Thani, Cave, Coral cave
 Surat Thani, Beach, Grandfather's Grandmother's Rocks - Hin Ta Hin Yai
 Surat Thani, Island, Nang Yuan Island
-Surat Thani, Neutral, Ratchaprapha Dam
+Surat Thani, Other, Ratchaprapha Dam

@@ -3,6 +3,8 @@
 #ifndef _H_GUARD_DYNAMICLIST
 #define _H_GUARD_DYNAMICLIST
 
+#include "Util.h"
+
 typedef struct DynamicListNode {
 	void* data;
 	struct DynamicListNode* prev;

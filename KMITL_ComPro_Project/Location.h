@@ -28,10 +28,10 @@ int LocationMap_LoadFromFile(LocationMap* pMap, const char* pathLocationData);
 void LocationMap_AddLocation(LocationMap* pMap, Location* pLocation);
 size_t LocationMap_GetSize(LocationMap* pMap);
 
-void LocationMap_GetListProvince(LocationMap* pMap, const char* province, DynamicList* pRes);
-void LocationMap_GetListType(LocationMap* pMap, const char* type, DynamicList* pRes);
-void LocationMap_SearchByProvince(LocationMap* pMap, const char* province, DynamicList* pRes);
-void LocationMap_SearchByType(LocationMap* pMap, const char* type, DynamicList* pRes);
+void LocationMap_GetListProvince(LocationMap* pMap, DynamicList* pList);
+void LocationMap_GetListType(LocationMap* pMap, DynamicList* pList);
+void LocationMap_SearchByProvince(LocationMap* pMap, const char* province, DynamicList* pList);
+void LocationMap_SearchByType(LocationMap* pMap, const char* type, DynamicList* pList);
 
 void Location_Free(Location* pLoc);
 

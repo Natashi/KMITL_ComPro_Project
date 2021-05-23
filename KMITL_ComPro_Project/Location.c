@@ -19,63 +19,49 @@ void LocationMap_Free(LocationMap* pMap) {
 int LocationMap_LoadFromFile(LocationMap* pMap, const char* pathLocationData) {
 	Location** locArray = pMap->data;
 
+	int ret = 0;
 	FILE* file = NULL;
 
 	size_t iLocation = 0;
 	if ((file = fopen(pathLocationData, "r")) != NULL) {	//Open the file for reading
 		char line[1024];
-		char tmp[2048];
+		char* tmp[3];
 
 		while (fgets(line, sizeof(line), file) != NULL) {	//Get the next line of the file
-			int bEnd = 0;
-			size_t bMatch = 0;
-			char* pLine = line;
+			size_t cMatch = 0;
 
-#define CHK_END if (*pLine == '\0' || *pLine == '\n') { bEnd = 1; }
-#define SKIP_SPACE while (isspace(*pLine)) { ++pLine; } CHK_END;
-
-			//Split the line text with the delimiter being commas (max=3)
-			for (int i = 0; i < 3 && !bEnd; ++i) {
-				char* pBuf = tmp + i * 512;
-				int j = 0;
-
-				SKIP_SPACE;		//Skip whitespaces
-				for (; *pLine != ',' && !bEnd; ++j) {
-					*(pBuf + j) = *(pLine++);
-					if (*pLine == '\0' || *pLine == '\n')
-						bEnd = 1;
-				}
-				SKIP_SPACE;		//Skip whitespaces
-
-				*(pBuf + j) = '\0';
-				if (j > 0) ++bMatch;
-
-				++pLine;
+			char* strSplit = strtok(line, ",");
+			while (strSplit && cMatch < 3) {
+				tmp[cMatch++] = strSplit;
+				strSplit = strtok(NULL, ",");
 			}
 
 			//The line must be split in exactly 3 strings
-			if (bMatch == 3) {
+			if (cMatch == 3) {
 				Location* location = PTR_NEW(Location);
 
-				location->province = _strdup(tmp + 0 * 512);	//Province
-				location->type = _strdup(tmp + 1 * 512);		//Type
-				location->name = _strdup(tmp + 2 * 512);		//Name
+				location->province = TrimString(tmp[0]);	//Province
+				location->type = TrimString(tmp[1]);		//Type
+				location->name = TrimString(tmp[2]);		//Name
 
 				LocationMap_AddLocation(pMap, location);
 			}
-			else goto lab_return_error;
+			else {
+				ret = -1;
+				goto lab_return;
+			}
 #undef CHK_END
 #undef SKIP_SPACE
 		}
 	}
-	else goto lab_return_error;
+	else {
+		ret = -1;
+		goto lab_return;
+	}
 
+lab_return:
 	if (file) fclose(file);
-	return 0;
-
-lab_return_error:
-	if (file) fclose(file);
-	return -1;
+	return ret;
 }
 
 void LocationMap_AddLocation(LocationMap* pMap, Location* pLocation) {
@@ -85,17 +71,86 @@ size_t LocationMap_GetSize(LocationMap* pMap) {
 	return pMap->count;
 }
 
-void LocationMap_GetListProvince(LocationMap* pMap, const char* province, DynamicList* pRes) {
+//---------------------------------------------------------------------------------------
 
+static const char* _FuncGetProvince(Location* pLoc) {
+	return pLoc->province;
 }
-void LocationMap_GetListType(LocationMap* pMap, const char* type, DynamicList* pRes) {
-
+static const char* _FuncGetType(Location* pLoc) {
+	return pLoc->type;
 }
-void LocationMap_SearchByProvince(LocationMap* pMap, const char* province, DynamicList* pRes) {
+typedef const char* (*GET_FUNC)(Location*);
 
+void _GetListSub(LocationMap* pMap, DynamicList* pList, GET_FUNC getFunc) {
+	size_t count = 0;
+	for (size_t iMap = 0; iMap < pMap->count; ++iMap) {
+		int bDuplicate = 0;
+
+		Location* pLoc1 = pMap->data[iMap];
+
+		if (!DynamicList_Empty(pList)) {
+			for (DynamicListNode* iNode = pList->head;; iNode = iNode->next) {
+				Location* pLoc2 = (Location*)(iNode->data);
+
+				bDuplicate = strcmp(getFunc(pLoc1), getFunc(pLoc2)) == 0;
+
+				if (bDuplicate) break;
+				if (iNode->next == NULL) break;
+			}
+		}
+		if (bDuplicate) continue;
+
+		DynamicListNode* node = PTR_NEW(DynamicListNode);
+		DynamicList_InitNode(node, pLoc1);
+		DynamicList_PushBack(pList, node);
+		++count;
+	}
 }
-void LocationMap_SearchByType(LocationMap* pMap, const char* type, DynamicList* pRes) {
+void LocationMap_GetListProvince(LocationMap* pMap, DynamicList* pList) {
+	_GetListSub(pMap, pList, _FuncGetProvince);
+}
+void LocationMap_GetListType(LocationMap* pMap, DynamicList* pList) {
+	_GetListSub(pMap, pList, _FuncGetType);
+}
 
+//---------------------------------------------------------------------------------------
+
+int GetMatchScore(const char* searchTerm, const char* str) {
+	int score = 0;
+	for (int i = 0;; ++i) {
+		char c1 = searchTerm[i];
+		char c2 = str[i];
+
+		if (c1 == '\0' || c2 == '\0')
+			break;
+
+		if (c1 == c2)
+			++score;
+		else {
+			score = 0;
+			break;
+		}
+	}
+	return score;
+}
+void _SearchSub(LocationMap* pMap, const char* search, DynamicList* pList, GET_FUNC getFunc) {
+	for (size_t iMap = 0; iMap < pMap->count; ++iMap) {
+		int bDup = 0;
+		Location* pLoc = pMap->data[iMap];
+
+		int score = GetMatchScore(search, getFunc(pLoc));
+		if (*search == '\0' || score > 0) {
+			DynamicListNode* node = PTR_NEW(DynamicListNode);
+			DynamicList_InitNode(node, pLoc);
+			DynamicList_PushBack(pList, node);
+		}
+	}
+}
+void LocationMap_SearchByProvince(LocationMap* pMap, const char* province, DynamicList* pList) {
+	_SearchSub(pMap, province, pList, _FuncGetProvince);
+}
+void LocationMap_SearchByType(LocationMap* pMap, const char* type, DynamicList* pList) {
+	_SearchSub(pMap, type, pList, _FuncGetType);
 }
 
 void Location_Free(Location* pLoc) {
