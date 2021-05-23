@@ -1,13 +1,38 @@
-#pragma once
 #include "pch.h"
 
-typedef struct {
+#ifndef _H_GUARD_LOCATION
+#define _H_GUARD_LOCATION
+
+#include "DynamicList.h"
+
+typedef struct Province {
 	const char* name;
 } Province;
 
-typedef struct {
-	Province* province;
+typedef struct Location {
+	const char* province;
+	const char* type;
 	const char* name;
-	double coordX;
-	double coordY;
 } Location;
+
+typedef struct LocationMap {
+	Location* data[256];
+	size_t count;
+} LocationMap;
+
+void LocationMap_Init(LocationMap* pMap);
+void LocationMap_Free(LocationMap* pMap);
+
+int LocationMap_LoadFromFile(LocationMap* pMap, const char* pathLocationData);
+
+void LocationMap_AddLocation(LocationMap* pMap, Location* pLocation);
+size_t LocationMap_GetSize(LocationMap* pMap);
+
+void LocationMap_GetListProvince(LocationMap* pMap, const char* province, DynamicList* pRes);
+void LocationMap_GetListType(LocationMap* pMap, const char* type, DynamicList* pRes);
+void LocationMap_SearchByProvince(LocationMap* pMap, const char* province, DynamicList* pRes);
+void LocationMap_SearchByType(LocationMap* pMap, const char* type, DynamicList* pRes);
+
+void Location_Free(Location* pLoc);
+
+#endif

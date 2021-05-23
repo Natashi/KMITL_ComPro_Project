@@ -1,5 +1,7 @@
-#pragma once
 #include "pch.h"
+
+#ifndef _H_GUARD_DYNAMICLIST
+#define _H_GUARD_DYNAMICLIST
 
 typedef struct DynamicListNode {
 	void* data;
@@ -23,8 +25,9 @@ void DynamicList_PushFront(DynamicList* list, DynamicListNode* node);
 DynamicListNode* DynamicList_PopBack(DynamicList* list);
 DynamicListNode* DynamicList_PopFront(DynamicList* list);
 
-size_t DynamicList_GetSize(DynamicList* list) {
-	return list ? list->size : 0;
-}
+size_t DynamicList_GetSize(DynamicList* list);
+int DynamicList_Empty(DynamicList* list);
 
 void DynamicList_FreeAll(DynamicList* list);
+
+#endif

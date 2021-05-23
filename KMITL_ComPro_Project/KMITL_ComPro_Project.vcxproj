@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="DynamicList.c" />
     <ClCompile Include="KMITL_ComPro_Project.c" />
+    <ClCompile Include="Location.c" />
     <ClCompile Include="pch.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

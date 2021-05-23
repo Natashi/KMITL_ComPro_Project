@@ -50,6 +50,13 @@ DynamicListNode* DynamicList_PopFront(DynamicList* list) {
 	return res;
 }
 
+size_t DynamicList_GetSize(DynamicList* list) {
+	return list ? list->size : 0;
+}
+int DynamicList_Empty(DynamicList* list) {
+	return DynamicList_GetSize(list) == 0;
+}
+
 void DynamicList_FreeAll(DynamicList* list) {
 	for (DynamicListNode* itr = list->head; itr != list->tail;) {
 		DynamicListNode* next = itr->next;

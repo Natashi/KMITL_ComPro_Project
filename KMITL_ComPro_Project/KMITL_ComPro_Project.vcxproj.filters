@@ -24,6 +24,9 @@
     <ClCompile Include="DynamicList.c">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Location.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
