@@ -30,6 +30,7 @@ int LocationMap_LoadFromFile(LocationMap* pMap, const char* pathLocationData) {
 		while (fgets(line, sizeof(line), file) != NULL) {	//Get the next line of the file
 			size_t cMatch = 0;
 
+			//Split the line by commas
 			char* strSplit = strtok(line, ",");
 			while (strSplit && cMatch < 3) {
 				tmp[cMatch++] = strSplit;
@@ -88,6 +89,7 @@ void _GetListSub(LocationMap* pMap, DynamicList* pList, GET_FUNC getFunc) {
 
 		Location* pLoc1 = pMap->data[iMap];
 
+		//Search for duplicates
 		if (!DynamicList_Empty(pList)) {
 			for (DynamicListNode* iNode = pList->head;; iNode = iNode->next) {
 				Location* pLoc2 = (Location*)(iNode->data);
@@ -98,8 +100,9 @@ void _GetListSub(LocationMap* pMap, DynamicList* pList, GET_FUNC getFunc) {
 				if (iNode->next == NULL) break;
 			}
 		}
-		if (bDuplicate) continue;
+		if (bDuplicate) continue;	//Don't add duplicates
 
+		//Add result to the list
 		DynamicListNode* node = PTR_NEW(DynamicListNode);
 		DynamicList_InitNode(node, pLoc1);
 		DynamicList_PushBack(pList, node);
@@ -115,13 +118,17 @@ void LocationMap_GetListType(LocationMap* pMap, DynamicList* pList) {
 
 //---------------------------------------------------------------------------------------
 
+//A simple string matching algorithm:
+//		GetMatchScore("example", "example")	-> true
+//		GetMatchScore("exa", "example")		-> true
+//		GetMatchScore("bbbbbbh", "example")	-> false
 int GetMatchScore(const char* searchTerm, const char* str) {
 	int score = 0;
 	for (int i = 0;; ++i) {
 		char c1 = searchTerm[i];
 		char c2 = str[i];
 
-		if (c1 == '\0' || c2 == '\0')
+		if (c1 == '\0' || c2 == '\0')	//Either ended
 			break;
 
 		if (c1 == c2)
@@ -138,6 +145,7 @@ void _SearchSub(LocationMap* pMap, const char* search, DynamicList* pList, GET_F
 		int bDup = 0;
 		Location* pLoc = pMap->data[iMap];
 
+		//Add all matching strings
 		int score = GetMatchScore(search, getFunc(pLoc));
 		if (*search == '\0' || score > 0) {
 			DynamicListNode* node = PTR_NEW(DynamicListNode);
