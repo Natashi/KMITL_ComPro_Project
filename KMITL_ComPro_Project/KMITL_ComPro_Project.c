@@ -3,6 +3,7 @@
 #include "Location.h"
 
 int main() {
+	int res = 0;
 	printf(
 		"Welcome to the tourist destination finder!\n\n"
 
@@ -149,10 +150,17 @@ lab_invalid:
 	}
 	else {
 		printf("CRITICAL ERROR: \"location.txt\" not found or inaccessible!");
+		res = -1;
+
+		//Wait 3 seconds
+		{
+			time_t time1 = time(NULL);
+			while (time(NULL) - time1 < 3);
+		}
 	}
 
 	LocationMap_Free(locationMap);
 	PTR_DELETE(locationMap);
 
-	return 0;
+	return res;
 }
