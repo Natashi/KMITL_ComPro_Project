@@ -3,6 +3,9 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
+#pragma warning (disable : 6011)	//NULL dereference
+#pragma warning (disable : 6387)	//'x' could be null, function specification blah blah blah
+
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>

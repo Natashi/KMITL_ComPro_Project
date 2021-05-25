@@ -2,8 +2,7 @@
 
 #include "Location.h"
 
-int main() {
-	int res = 0;
+void PrintHelp() {
 	printf(
 		"Welcome to the tourist destination finder!\n\n"
 
@@ -21,11 +20,17 @@ int main() {
 		"    exit\n"
 		"        exit program\n\n"
 	);
+}
+
+int main() {
+	int res = 0;
 
 	LocationMap* locationMap = PTR_NEW(LocationMap);
 	LocationMap_Init(locationMap);
 
 	if (!LocationMap_LoadFromFile(locationMap, "locations.txt")) {
+		PrintHelp();
+
 		const char* S_INVALID = "\nInvalid command.\n\n";
 
 		int bLoop = 1;

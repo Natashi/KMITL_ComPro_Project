@@ -51,8 +51,6 @@ int LocationMap_LoadFromFile(LocationMap* pMap, const char* pathLocationData) {
 				ret = -1;
 				goto lab_return;
 			}
-#undef CHK_END
-#undef SKIP_SPACE
 		}
 	}
 	else {

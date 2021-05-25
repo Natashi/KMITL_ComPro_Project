@@ -58,9 +58,11 @@ int DynamicList_Empty(DynamicList* list) {
 }
 
 void DynamicList_FreeAll(DynamicList* list) {
-	for (DynamicListNode* itr = list->head; itr != list->tail;) {
+	for (DynamicListNode* itr = list->head;;) {
 		DynamicListNode* next = itr->next;
 		free(itr);
+
+		if (next == list->tail) break;
 		itr = next;
 	}
 	DynamicList_Init(list);

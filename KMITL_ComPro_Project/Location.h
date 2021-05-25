@@ -5,10 +5,6 @@
 
 #include "DynamicList.h"
 
-typedef struct Province {
-	const char* name;
-} Province;
-
 typedef struct Location {
 	const char* province;
 	const char* type;
